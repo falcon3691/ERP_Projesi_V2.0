@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CA1E7AD0-EBA6-47A7-BE78-D2D86B8681FD}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ERP_Projesi_V2._0</RootNamespace>
+    <AssemblyName>ERP_Projesi_V2.0</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Ekranlar\anaSayfa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ekranlar\anaSayfa.Designer.cs">
+      <DependentUpon>anaSayfa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ekranlar\Modüller\malzeme.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ekranlar\Modüller\malzeme.Designer.cs">
+      <DependentUpon>malzeme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ekranlar\Modüller\muhasebe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ekranlar\Modüller\muhasebe.Designer.cs">
+      <DependentUpon>muhasebe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ekranlar\Modüller\musteri\musteri-1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ekranlar\Modüller\musteri\musteri-1.Designer.cs">
+      <DependentUpon>musteri-1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ekranlar\Modüller\musteri\musteri-2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ekranlar\Modüller\musteri\musteri-2.Designer.cs">
+      <DependentUpon>musteri-2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ekranlar\Modüller\musteri\musteri-3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ekranlar\Modüller\musteri\musteri-3.Designer.cs">
+      <DependentUpon>musteri-3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ekranlar\Modüller\satinAlma\satinAlma-1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ekranlar\Modüller\satinAlma\satinAlma-1.Designer.cs">
+      <DependentUpon>satinAlma-1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ekranlar\Modüller\satinAlma\satinAlma-2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ekranlar\Modüller\satinAlma\satinAlma-2.Designer.cs">
+      <DependentUpon>satinAlma-2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ekranlar\Modüller\satis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ekranlar\Modüller\satis.Designer.cs">
+      <DependentUpon>satis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ekranlar\Modüller\tedarikci\tedarikci-1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ekranlar\Modüller\tedarikci\tedarikci-1.Designer.cs">
+      <DependentUpon>tedarikci-1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ekranlar\Modüller\tedarikci\tedarikci-2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ekranlar\Modüller\tedarikci\tedarikci-2.Designer.cs">
+      <DependentUpon>tedarikci-2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ekranlar\Modüller\tedarikci\tedarikci-3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ekranlar\Modüller\tedarikci\tedarikci-3.Designer.cs">
+      <DependentUpon>tedarikci-3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ekranlar\Modüller\tedarikci\tedarikci-4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ekranlar\Modüller\tedarikci\tedarikci-4.Designer.cs">
+      <DependentUpon>tedarikci-4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ekranlar\Modüller\tedarikci\tedarikci-5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ekranlar\Modüller\tedarikci\tedarikci-5.Designer.cs">
+      <DependentUpon>tedarikci-5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KKP_V2DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KKP_V2DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Ekranlar\Modüller\malzeme.resx">
+      <DependentUpon>malzeme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ekranlar\Modüller\muhasebe.resx">
+      <DependentUpon>muhasebe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ekranlar\Modüller\musteri\musteri-1.resx">
+      <DependentUpon>musteri-1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ekranlar\Modüller\musteri\musteri-2.resx">
+      <DependentUpon>musteri-2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ekranlar\Modüller\musteri\musteri-3.resx">
+      <DependentUpon>musteri-3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ekranlar\Modüller\satinAlma\satinAlma-1.resx">
+      <DependentUpon>satinAlma-1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ekranlar\Modüller\satinAlma\satinAlma-2.resx">
+      <DependentUpon>satinAlma-2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ekranlar\Modüller\satis.resx">
+      <DependentUpon>satis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ekranlar\Modüller\tedarikci\tedarikci-1.resx">
+      <DependentUpon>tedarikci-1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ekranlar\Modüller\tedarikci\tedarikci-2.resx">
+      <DependentUpon>tedarikci-2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ekranlar\Modüller\tedarikci\tedarikci-3.resx">
+      <DependentUpon>tedarikci-3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ekranlar\Modüller\tedarikci\tedarikci-4.resx">
+      <DependentUpon>tedarikci-4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ekranlar\Modüller\tedarikci\tedarikci-5.resx">
+      <DependentUpon>tedarikci-5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="KKP_V2DataSet.xsc">
+      <DependentUpon>KKP_V2DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="KKP_V2DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>KKP_V2DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="KKP_V2DataSet.xss">
+      <DependentUpon>KKP_V2DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
