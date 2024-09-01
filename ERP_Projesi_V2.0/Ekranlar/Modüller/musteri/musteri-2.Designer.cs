@@ -58,17 +58,18 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.musteri
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textBox1.Location = new System.Drawing.Point(178, 12);
+            this.textBox1.Location = new System.Drawing.Point(192, 8);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 27);
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(144, 27);
             this.textBox1.TabIndex = 1;
             // 
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textBox2.Location = new System.Drawing.Point(178, 45);
+            this.textBox2.Location = new System.Drawing.Point(192, 41);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 27);
+            this.textBox2.Size = new System.Drawing.Size(144, 27);
             this.textBox2.TabIndex = 3;
             // 
             // label2
@@ -84,9 +85,10 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.musteri
             // textBox3
             // 
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textBox3.Location = new System.Drawing.Point(178, 78);
+            this.textBox3.Location = new System.Drawing.Point(192, 74);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 27);
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(144, 27);
             this.textBox3.TabIndex = 5;
             // 
             // label3
@@ -102,39 +104,41 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.musteri
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button1.Location = new System.Drawing.Point(297, 12);
+            this.button1.Location = new System.Drawing.Point(342, 8);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(148, 41);
+            this.button1.Size = new System.Drawing.Size(171, 41);
             this.button1.TabIndex = 6;
             this.button1.Text = "Bilgileri Güncelle";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button2.Location = new System.Drawing.Point(572, 12);
+            this.button2.Location = new System.Drawing.Point(528, 8);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(148, 41);
             this.button2.TabIndex = 7;
             this.button2.Text = "Müşteriyi Sil";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(451, 71);
+            this.dateTimePicker1.Location = new System.Drawing.Point(528, 67);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(115, 27);
+            this.dateTimePicker1.Size = new System.Drawing.Size(139, 27);
             this.dateTimePicker1.TabIndex = 8;
             // 
             // dateTimePicker2
             // 
             this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(605, 71);
+            this.dateTimePicker2.Location = new System.Drawing.Point(673, 67);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(115, 27);
+            this.dateTimePicker2.Size = new System.Drawing.Size(139, 27);
             this.dateTimePicker2.TabIndex = 9;
             this.dateTimePicker2.Visible = false;
             // 
@@ -142,19 +146,20 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.musteri
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.checkBox1.Location = new System.Drawing.Point(450, 104);
+            this.checkBox1.Location = new System.Drawing.Point(528, 104);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(131, 21);
             this.checkBox1.TabIndex = 10;
             this.checkBox1.Text = "Tarih aralığı seç";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button3.Location = new System.Drawing.Point(297, 71);
+            this.button3.Location = new System.Drawing.Point(342, 67);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(148, 41);
+            this.button3.Size = new System.Drawing.Size(171, 41);
             this.button3.TabIndex = 11;
             this.button3.Text = "İşlemleri Listele";
             this.button3.UseVisualStyleBackColor = true;
@@ -164,16 +169,17 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.musteri
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(16, 131);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(704, 307);
+            this.dataGridView1.Size = new System.Drawing.Size(796, 307);
             this.dataGridView1.TabIndex = 12;
             // 
             // musteri_2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(732, 450);
+            this.ClientSize = new System.Drawing.Size(823, 450);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.checkBox1);

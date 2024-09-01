@@ -55,6 +55,7 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.musteri
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.textBox1.Location = new System.Drawing.Point(198, 6);
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(100, 27);
             this.textBox1.TabIndex = 1;
             // 
@@ -63,6 +64,7 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.musteri
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.textBox2.Location = new System.Drawing.Point(198, 39);
             this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(100, 27);
             this.textBox2.TabIndex = 3;
             // 
@@ -81,6 +83,7 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.musteri
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.textBox3.Location = new System.Drawing.Point(198, 72);
             this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(100, 27);
             this.textBox3.TabIndex = 5;
             // 

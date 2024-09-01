@@ -16,7 +16,7 @@ namespace ERP_Projesi_V2._0
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new malzeme());
+            Application.Run(new Ekranlar.Modüller.musteri.musteri_1());
         }
     }
 }

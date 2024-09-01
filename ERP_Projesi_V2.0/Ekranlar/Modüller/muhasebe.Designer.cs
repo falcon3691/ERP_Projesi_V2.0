@@ -38,6 +38,7 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,9 +95,9 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.button1.Location = new System.Drawing.Point(286, 19);
+            this.button1.Location = new System.Drawing.Point(286, 9);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(121, 35);
+            this.button1.Size = new System.Drawing.Size(131, 35);
             this.button1.TabIndex = 6;
             this.button1.Text = "İşlemleri Listele";
             this.button1.UseVisualStyleBackColor = true;
@@ -104,9 +105,9 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.button2.Location = new System.Drawing.Point(413, 19);
+            this.button2.Location = new System.Drawing.Point(423, 10);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(132, 35);
+            this.button2.Size = new System.Drawing.Size(131, 35);
             this.button2.TabIndex = 7;
             this.button2.Text = "Alacakları Listele";
             this.button2.UseVisualStyleBackColor = true;
@@ -114,9 +115,9 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.button3.Location = new System.Drawing.Point(551, 19);
+            this.button3.Location = new System.Drawing.Point(423, 51);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(121, 35);
+            this.button3.Size = new System.Drawing.Size(131, 35);
             this.button3.TabIndex = 8;
             this.button3.Text = "Borçları Listele";
             this.button3.UseVisualStyleBackColor = true;
@@ -131,11 +132,22 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller
             this.dataGridView1.Size = new System.Drawing.Size(656, 351);
             this.dataGridView1.TabIndex = 9;
             // 
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.button4.Location = new System.Drawing.Point(286, 51);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(131, 35);
+            this.button4.TabIndex = 10;
+            this.button4.Text = "Listeyi Raporla";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
             // muhasebe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(689, 450);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -164,5 +176,6 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button button4;
     }
 }

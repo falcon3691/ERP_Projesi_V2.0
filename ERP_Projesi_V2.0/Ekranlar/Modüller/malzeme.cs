@@ -15,6 +15,7 @@ namespace ERP_Projesi_V2._0
     {
         //SQL veri tabanı bağlantı kodu.
         public String baglantiKodu = "Data Source=DESKTOP-HSH38D0\\SQLEXPRESS;Initial Catalog=KKP_V2;Integrated Security=True";
+
         //Ürün Özellikleri değişkenleri başlangıcı.
         public int id;
         public int miktari;
@@ -27,6 +28,7 @@ namespace ERP_Projesi_V2._0
         public DateTime satinAlmaTarihi;
         public DateTime sonKullanmaTarihi;
         //Ürün Özellikleri değişkenleri sonu.
+
         public malzeme()
         {
             InitializeComponent();
@@ -89,6 +91,7 @@ namespace ERP_Projesi_V2._0
             }
             listele();
         }
+
         //Güncelle butonu
         private void button2_Click(object sender, EventArgs e)
         {
@@ -147,6 +150,7 @@ namespace ERP_Projesi_V2._0
             }
             listele();
         }
+
         //Sil butonu
         private void button3_Click(object sender, EventArgs e)
         {
@@ -191,11 +195,13 @@ namespace ERP_Projesi_V2._0
             }
             listele();
         }
+
         //Hepsini Listele butonu
         private void button5_Click(object sender, EventArgs e)
         {
             listele();
         }
+
         //Ürünü Ara butonu
         private void button4_Click(object sender, EventArgs e)
         {
@@ -213,6 +219,7 @@ namespace ERP_Projesi_V2._0
                 MessageBox.Show("Ürünün ID'si veya Adı'nı boş bırakamazsınız.");
             }
         }
+
         //dataGridView üzerindeki seçilen elemanın değerlerini,
         //ekranda bulunan textBox, comboBox ve dateTimePicker'lara değer olarak atılır.
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -248,6 +255,7 @@ namespace ERP_Projesi_V2._0
             dateTimePicker1.Value = DateTime.Now;
             dateTimePicker2.Value = DateTime.Now;
         }
+
         //Belirlenen sütunda, belirlenen değeri içeren tüm satırlar listelenir.
         //Eğer sütun yada değer girilmezse, otomatik olarak null değer alırlar ve tüm tablo listelenir.
         public void listele(String sutun = null, object deger = null)
@@ -256,7 +264,7 @@ namespace ERP_Projesi_V2._0
                 try
                 {
                     baglanti.Open();
-                    String sqlKomutu = "Select * FROM malzeme";
+                    String sqlKomutu = "Select * FROM malzeme ";
                     if(sutun != null && deger != null)
                     {
                         sqlKomutu += $"WHERE {sutun} LIKE @deger";
@@ -319,6 +327,7 @@ namespace ERP_Projesi_V2._0
                 MessageBox.Show(mesaj, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         //Öncelikle bir metin var mı diye kontrol edilir.
         //Eğer bir metin varsa, belirtilen String değişkene o metni atama yapılır.
         //Yapılan kontrole göre bool bir değer döndürülür.
@@ -335,6 +344,7 @@ namespace ERP_Projesi_V2._0
                 return false;
             }
         }
+
         //Öncelikle dateTimePicker'ın değeri null mu diye kontrol edilir.
         //Eğer null değilse, belirtilen DateTime değişkene o değeri atama yapılır.
         //Yapılan kontrole göre bool bir değer döndürülür.
@@ -350,6 +360,7 @@ namespace ERP_Projesi_V2._0
                 return false; 
             }
         }
+
         //Öncelikle comboBox'ın değeri null mu diye kontrol edilir.
         //Eğer null değilse, belirtilen String değişkene o değeri atama yapılır.
         //Yapılan kontrole göre bool bir değer döndürülür.
@@ -366,5 +377,6 @@ namespace ERP_Projesi_V2._0
                 return false;
             }
         }
+
     }
 }
