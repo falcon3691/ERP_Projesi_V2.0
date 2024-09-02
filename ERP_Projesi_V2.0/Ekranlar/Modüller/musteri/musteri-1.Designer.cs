@@ -74,7 +74,7 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.musteri
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(511, 295);
+            this.dataGridView1.Size = new System.Drawing.Size(548, 295);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
@@ -83,9 +83,9 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.musteri
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.button2.Location = new System.Drawing.Point(430, 7);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(96, 32);
+            this.button2.Size = new System.Drawing.Size(133, 32);
             this.button2.TabIndex = 4;
-            this.button2.Text = "Listele";
+            this.button2.Text = "Müşteri Ara";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -93,7 +93,7 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.musteri
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(539, 350);
+            this.ClientSize = new System.Drawing.Size(573, 350);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.textBox1);

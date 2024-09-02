@@ -40,17 +40,18 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.tedarikci
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.button1.Location = new System.Drawing.Point(12, 39);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(117, 41);
+            this.button1.Size = new System.Drawing.Size(138, 41);
             this.button1.TabIndex = 26;
             this.button1.Text = "Ürünü Düzelt";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.textBox1.Location = new System.Drawing.Point(102, 6);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(150, 27);
+            this.textBox1.Size = new System.Drawing.Size(171, 27);
             this.textBox1.TabIndex = 19;
             // 
             // label1
@@ -66,18 +67,19 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.tedarikci
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button2.Location = new System.Drawing.Point(135, 39);
+            this.button2.Location = new System.Drawing.Point(156, 39);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(117, 41);
             this.button2.TabIndex = 27;
             this.button2.Text = "Ürünü Sil";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // tedarikci_5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(261, 81);
+            this.ClientSize = new System.Drawing.Size(285, 81);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);

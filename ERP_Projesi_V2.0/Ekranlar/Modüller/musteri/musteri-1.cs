@@ -41,8 +41,7 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.musteri
                     komut.Parameters.Add("@adi", SqlDbType.NVarChar).Value = adi;
                     komut.Parameters.Add("@borcu", SqlDbType.Decimal).Value = borcu;
 
-                    try
-                    {
+                    try{
                         baglanti.Open();
                         int sonuc = komut.ExecuteNonQuery();
                         if (sonuc == 1)
@@ -55,12 +54,10 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.musteri
                             MessageBox.Show("Yeni müşteri eklenemedi.");
                         }
                     }
-                    catch (Exception hata)
-                    {
+                    catch (Exception hata){
                         Console.Out.WriteLine("HATA: " + hata.ToString());
                     }
-                    finally
-                    {
+                    finally{
                         baglanti.Close();
                     }
                 }
@@ -68,17 +65,15 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.musteri
             listele();
         }
 
-        //Listle butonu
+        //Müşteri Ara butonu
         private void button2_Click(object sender, EventArgs e)
         {
-            if(String.IsNullOrWhiteSpace(textBox1.Text))
-                listele();
+            if(!String.IsNullOrWhiteSpace(textBox1.Text))
+                listele("adi", textBox1.Text);
             else
-            {
-                adi = textBox1.Text;
-                listele("adi", adi);
-            }
+                listele();
         }
+
         //Ekranda ki textBox'a null kontrolü yapılır.
         //Eğer null değer değilse, sayfanın başında belirtilen "Ürün Özellikleri" değişkenine atama yapılır.
         //Boş olmaması gereken kısımlar boş ise hata mesajları gösterilir.
@@ -107,12 +102,11 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.musteri
 
         //Belirlenen sütunda, belirlenen değeri içeren tüm satırlar listelenir.
         //Eğer sütun yada değer girilmezse, otomatik olarak null değer alırlar ve tüm tablo listelenir.
-            public void listele(String sutun = null, object deger = null)
+        public void listele(String sutun = null, object deger = null)
             {
                 using (SqlConnection baglanti = new SqlConnection(baglantiKodu))
                 {
-                    try
-                    {
+                    try{
                         baglanti.Open();
                         String sqlKomutu = "Select * FROM musteri ";
                         if (sutun != null && deger != null)
@@ -130,12 +124,10 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.musteri
                         dataGridView1.DataSource = dt;
                         temizle();
                     }
-                    catch (Exception hata)
-                    {
+                    catch (Exception hata){
                         MessageBox.Show("HATA: " + hata.ToString());
                     }
-                    finally
-                    {
+                    finally{
                         baglanti.Close();
                     }
                 }
@@ -159,8 +151,7 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.musteri
         }
 
         //Seçilen satırda ki bilgileri alır ve musteri-2 ekranına gönderir.
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e){
             int index = e.RowIndex;
             List<String> hataMesajları = new List<string>();
             if(index >= 0){
@@ -170,8 +161,16 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.musteri
                 if (!durum) { hataMesajları.Add("Seçilen liste elemanından Ad Soyad değeri alınamadı"); }
                 durum = decimal.TryParse(dataGridView1.Rows[index].Cells[2].Value.ToString(), out borcu);
                 if (!durum) { hataMesajları.Add("Seçilen liste elemanından Borç değeri alınamadı"); }
-                musteri_2 form = new musteri_2(id, adi, borcu);
-                form.Show();
+                if(hataMesajları.Count > 0)
+                {
+                    String mesaj = String.Join(Environment.NewLine, hataMesajları);
+                    MessageBox.Show(mesaj, "HATA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    musteri_2 form = new musteri_2(id, adi, borcu);
+                    form.Show();
+                }
             }
         }
 

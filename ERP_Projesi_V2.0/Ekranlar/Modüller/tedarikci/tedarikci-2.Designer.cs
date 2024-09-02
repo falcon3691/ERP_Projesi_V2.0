@@ -93,6 +93,7 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.tedarikci
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.textBox3.Location = new System.Drawing.Point(447, 12);
             this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(137, 27);
             this.textBox3.TabIndex = 5;
             // 
@@ -100,7 +101,7 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.tedarikci
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label3.Location = new System.Drawing.Point(267, 15);
+            this.label3.Location = new System.Drawing.Point(252, 15);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(160, 20);
             this.label3.TabIndex = 4;
@@ -111,6 +112,7 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.tedarikci
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.textBox4.Location = new System.Drawing.Point(447, 45);
             this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(137, 27);
             this.textBox4.TabIndex = 7;
             // 
@@ -118,7 +120,7 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.tedarikci
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label4.Location = new System.Drawing.Point(267, 48);
+            this.label4.Location = new System.Drawing.Point(252, 48);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(174, 20);
             this.label4.TabIndex = 6;
@@ -129,20 +131,22 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.tedarikci
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.button1.Location = new System.Drawing.Point(12, 89);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(117, 39);
+            this.button1.Size = new System.Drawing.Size(141, 39);
             this.button1.TabIndex = 8;
             this.button1.Text = "Tedarikçi Sil";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button2.Location = new System.Drawing.Point(135, 89);
+            this.button2.Location = new System.Drawing.Point(159, 89);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(160, 39);
+            this.button2.Size = new System.Drawing.Size(184, 39);
             this.button2.TabIndex = 9;
             this.button2.Text = "Tedarikçi Güncelle";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // dateTimePicker1
             // 
@@ -172,13 +176,14 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.tedarikci
             this.checkBox1.TabIndex = 12;
             this.checkBox1.Text = "Tarih aralığı seç";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button3.Location = new System.Drawing.Point(155, 178);
+            this.button3.Location = new System.Drawing.Point(143, 178);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(140, 39);
+            this.button3.Size = new System.Drawing.Size(159, 39);
             this.button3.TabIndex = 13;
             this.button3.Text = "İşlemleri Listele";
             this.button3.UseVisualStyleBackColor = true;
@@ -206,19 +211,21 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.tedarikci
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.button4.Location = new System.Drawing.Point(308, 178);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(140, 39);
+            this.button4.Size = new System.Drawing.Size(162, 39);
             this.button4.TabIndex = 16;
             this.button4.Text = "Ürünleri Listele";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 223);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(282, 197);
+            this.dataGridView1.Size = new System.Drawing.Size(290, 197);
             this.dataGridView1.TabIndex = 17;
             // 
             // dataGridView2
@@ -226,16 +233,18 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.tedarikci
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(308, 223);
             this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
             this.dataGridView2.Size = new System.Drawing.Size(276, 197);
             this.dataGridView2.TabIndex = 18;
+            this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
             // 
             // tedarikci_2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(593, 427);
+            this.ClientSize = new System.Drawing.Size(594, 427);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button4);
