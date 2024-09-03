@@ -118,17 +118,11 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller
                 dateTimePicker2.Enabled = false;
             }
         }
-        public void degiskenleriAta()
-        {
-            tarih = DateTime.Today.AddDays(3);
-            toplamFiyat = 300;
-            girdiCikti = "ÇIKTI";
-            islemTuru = "BORÇ";
-        }
 
+        //degerEkle fonksiyonu sadece veri tabanına deneme amaçlı veri eklemek için kullanılıyor.
+        //Diğer modüllerden veri ekleme işlemleri tamamlanınca silinmesi gerekiyor.
         public void degerEkle(DateTime tarih, int toplamFiyat, String girdiCikti, String islemTuru)
         {
-            degiskenleriAta();
             using (SqlConnection baglanti = new SqlConnection(baglantiKodu))
             {
                 String sqlKomutu = "INSERT INTO muhasebe(islemTarihi, toplamFiyat, girdiCikti, islemTuru) " +
