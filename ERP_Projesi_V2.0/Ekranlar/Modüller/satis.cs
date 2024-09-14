@@ -129,9 +129,10 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller
                 //comboBox1'de seçili kişinin adı muhasebe veri tablosuna kayıt edilir.
                 string sqlKomutu1 = "INSERT INTO muhasebe(islemTarihi, toplamFiyat, girdiCikti, islemTuru, kisiKodu) " +
                                                 "VALUES(@islemTarihi, @toplamFiyat, @girdiCikti, @islemTuru, @kisiKodu)";
+               
                 using (SqlCommand komut1 = new SqlCommand(sqlKomutu1, baglanti))
                 {
-                    komut1.Parameters.Add("@islemTarihi", SqlDbType.DateTime).Value = DateTime.Now;
+                    komut1.Parameters.Add("@islemTarihi", SqlDbType.DateTime).Value = DateTime.Now.Date;
                     komut1.Parameters.Add("@toplamFiyat", SqlDbType.Int).Value = toplamFiyat;
                     komut1.Parameters.Add("@girdiCikti", SqlDbType.NVarChar).Value = "GİRDİ";
                     komut1.Parameters.Add("@islemTuru", SqlDbType.NVarChar).Value = "BORÇ";
@@ -143,6 +144,39 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller
                         Console.Out.WriteLine(sonuc);
                     }
                     catch (Exception hata)
+                    {
+                        MessageBox.Show(hata.ToString(), "HATA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        baglanti.Close();
+                    }
+                }
+                
+                //Kişi adına göre arama yapılır ve kişinin borç bilgisi alınır.
+                //Ardından borç bilgisine toplam fiyat tutarı eklenir ve kişinin borcu güncellenir.
+                string sqlKomutu2 = "SELECT borcu FROM musteri WHERE adi = @adi";
+                using (SqlCommand komut2 = new SqlCommand(sqlKomutu2, baglanti))
+                {
+                    komut2.Parameters.Add("@adi", SqlDbType.NVarChar).Value = comboBox1.SelectedValue;
+                    try
+                    {
+                        baglanti.Open();
+                        SqlDataAdapter da = new SqlDataAdapter(komut2);
+                        DataTable dt2 = new DataTable();
+                        da.Fill(dt2);
+                        dt2.Rows[0][0] = int.Parse(dt2.Rows[0][0].ToString()) + toplamFiyat;
+                        string sqlKomutu3 = "UPDATE musteri " +
+                                            "SET borcu = @borcu " +
+                                            "WHERE adi = @adi";
+                        SqlCommand komut3 = new SqlCommand(sqlKomutu3, baglanti);
+                        komut3.Parameters.Add("@borcu", SqlDbType.Int).Value = dt2.Rows[0][0];
+                        komut3.Parameters.Add("@adi", SqlDbType.NVarChar).Value = comboBox1.SelectedValue;
+                        string sonuc = (komut3.ExecuteNonQuery() == 1) ? "Borç bilgisi güncellendi." :
+                                                                            "Borç bilgisi güncellenemedi.";
+                        Console.Out.WriteLine(sonuc);
+                    }
+                    catch(Exception hata)
                     {
                         MessageBox.Show(hata.ToString(), "HATA", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -168,7 +202,8 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller
                             try
                             {
                                 baglanti.Open();
-                                string sonuc = (komut.ExecuteNonQuery() == 1) ? "Ürün miktar bilgisi değiştirildi" : " Ürün miktar bilgisi değiştirilemedi.";
+                                string sonuc = (komut.ExecuteNonQuery() == 1) ? "Ürün miktar bilgisi değiştirildi" :
+                                                                                " Ürün miktar bilgisi değiştirilemedi.";
                                 Console.Out.WriteLine(i.ToString() + ". " + sonuc);
                                 i++;
                                 temizle();

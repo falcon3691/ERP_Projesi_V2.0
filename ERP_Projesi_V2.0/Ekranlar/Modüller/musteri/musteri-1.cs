@@ -14,11 +14,11 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.musteri
     public partial class musteri_1 : Form
     {
         //SQL veri tabanı bağlantı kodu.
-        public String baglantiKodu = "Data Source=DESKTOP-HSH38D0\\SQLEXPRESS;Initial Catalog=KKP_V2;Integrated Security=True";
+        public string baglantiKodu = "Data Source=DESKTOP-HSH38D0\\SQLEXPRESS;Initial Catalog=KKP_V2;Integrated Security=True";
 
         //Müşteri özellikleri değişkenleri başlangıcı
         public int id;
-        public String adi;
+        public string adi;
         public decimal borcu;
         //Müşteri özellikleri değişkenleri sonu
 
@@ -33,7 +33,7 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.musteri
         {
             using (SqlConnection baglanti = new SqlConnection(baglantiKodu))
             {
-                String sqlKomutu = "INSERT INTO musteri(adi, borcu) VALUES (@adi, @borcu)";
+                string sqlKomutu = "INSERT INTO musteri(adi, borcu) VALUES (@adi, @borcu)";
 
                 using (SqlCommand komut = new SqlCommand(sqlKomutu, baglanti))
                 {
@@ -41,7 +41,8 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.musteri
                     komut.Parameters.Add("@adi", SqlDbType.NVarChar).Value = adi;
                     komut.Parameters.Add("@borcu", SqlDbType.Decimal).Value = borcu;
 
-                    try{
+                    try
+                    {
                         baglanti.Open();
                         int sonuc = komut.ExecuteNonQuery();
                         if (sonuc == 1)
@@ -54,10 +55,12 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.musteri
                             MessageBox.Show("Yeni müşteri eklenemedi.");
                         }
                     }
-                    catch (Exception hata){
+                    catch (Exception hata)
+                    {
                         Console.Out.WriteLine("HATA: " + hata.ToString());
                     }
-                    finally{
+                    finally
+                    {
                         baglanti.Close();
                     }
                 }
@@ -68,7 +71,7 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.musteri
         //Müşteri Ara butonu
         private void button2_Click(object sender, EventArgs e)
         {
-            if(!String.IsNullOrWhiteSpace(textBox1.Text))
+            if (!string.IsNullOrWhiteSpace(textBox1.Text))
                 listele("adi", textBox1.Text);
             else
                 listele();
@@ -102,43 +105,46 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.musteri
 
         //Belirlenen sütunda, belirlenen değeri içeren tüm satırlar listelenir.
         //Eğer sütun yada değer girilmezse, otomatik olarak null değer alırlar ve tüm tablo listelenir.
-        public void listele(String sutun = null, object deger = null)
+        public void listele(string sutun = null, object deger = null)
+        {
+            using (SqlConnection baglanti = new SqlConnection(baglantiKodu))
             {
-                using (SqlConnection baglanti = new SqlConnection(baglantiKodu))
+                try
                 {
-                    try{
-                        baglanti.Open();
-                        String sqlKomutu = "Select * FROM musteri ";
-                        if (sutun != null && deger != null)
-                        {
-                            sqlKomutu += $"WHERE {sutun} LIKE @deger";
-                        }
-                        SqlCommand komut = new SqlCommand(sqlKomutu, baglanti);
-                        if (sutun != null && deger != null)
-                        {
-                            komut.Parameters.AddWithValue("@deger", $"%{deger}%");
-                        }
-                        SqlDataAdapter da = new SqlDataAdapter(komut);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        dataGridView1.DataSource = dt;
-                        temizle();
+                    baglanti.Open();
+                    string sqlKomutu = "Select * FROM musteri ";
+                    if (sutun != null && deger != null)
+                    {
+                        sqlKomutu += $"WHERE {sutun} LIKE @deger";
                     }
-                    catch (Exception hata){
-                        MessageBox.Show("HATA: " + hata.ToString());
+                    SqlCommand komut = new SqlCommand(sqlKomutu, baglanti);
+                    if (sutun != null && deger != null)
+                    {
+                        komut.Parameters.AddWithValue("@deger", $"%{deger}%");
                     }
-                    finally{
-                        baglanti.Close();
-                    }
+                    SqlDataAdapter da = new SqlDataAdapter(komut);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    dataGridView1.DataSource = dt;
+                    temizle();
+                }
+                catch (Exception hata)
+                {
+                    MessageBox.Show("HATA: " + hata.ToString());
+                }
+                finally
+                {
+                    baglanti.Close();
                 }
             }
+        }
 
         //Öncelikle bir metin var mı diye kontrol edilir.
         //Eğer bir metin varsa, belirtilen String değişkene o metni atama yapılır.
         //Yapılan kontrole göre bool bir değer döndürülür.
-        public bool MetinKontrolAta(String metin, out String degisken)
+        public bool MetinKontrolAta(string metin, out string degisken)
         {
-            if (!String.IsNullOrWhiteSpace(metin))
+            if (!string.IsNullOrWhiteSpace(metin))
             {
                 degisken = metin;
                 return true;
@@ -151,19 +157,21 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.musteri
         }
 
         //Seçilen satırda ki bilgileri alır ve musteri-2 ekranına gönderir.
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e){
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
             int index = e.RowIndex;
-            List<String> hataMesajları = new List<string>();
-            if(index >= 0){
+            List<string> hataMesajları = new List<string>();
+            if (index >= 0)
+            {
                 bool durum = int.TryParse(dataGridView1.Rows[index].Cells[0].Value.ToString(), out id);
                 if (!durum) { hataMesajları.Add("Seçilen liste elemanından ID değeri alınamadı"); }
                 durum = MetinKontrolAta(dataGridView1.Rows[index].Cells[1].Value.ToString(), out adi);
                 if (!durum) { hataMesajları.Add("Seçilen liste elemanından Ad Soyad değeri alınamadı"); }
                 durum = decimal.TryParse(dataGridView1.Rows[index].Cells[2].Value.ToString(), out borcu);
                 if (!durum) { hataMesajları.Add("Seçilen liste elemanından Borç değeri alınamadı"); }
-                if(hataMesajları.Count > 0)
+                if (hataMesajları.Count > 0)
                 {
-                    String mesaj = String.Join(Environment.NewLine, hataMesajları);
+                    string mesaj = string.Join(Environment.NewLine, hataMesajları);
                     MessageBox.Show(mesaj, "HATA", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
