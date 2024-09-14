@@ -20,8 +20,7 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.tedarikci
         public String id;
         public String adi;
         public String urun;
-        public int borcu;
-        public int alacagi;
+        public decimal alacagi;
         //Tedarikçi özellikleri değişkenleri sonu
 
         public tedarikci_2(String id)
@@ -31,9 +30,9 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.tedarikci
             sqlDegiskenAta(id);
             textBox1.Text = id;
             textBox2.Text = adi;
-            textBox3.Text = borcu.ToString();
-            textBox4.Text = alacagi.ToString();
+            textBox3.Text = alacagi.ToString();
             dataGridViewDoldur(2, id);
+            listele();
         }
 
         //Tedarikçi Sil butonu
@@ -113,7 +112,7 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.tedarikci
             }
         }
 
-        //Ürünleri Lsitele butonu
+        //Ürünleri Listele butonu
         private void button4_Click(object sender, EventArgs e)
         {
             using (SqlConnection baglanti = new SqlConnection(baglantiKodu))
@@ -126,16 +125,16 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.tedarikci
                     String sqlKomutu = "SELECT VALUE AS urun " +
                                        "FROM tedarikci CROSS APPLY STRING_SPLIT(urunler, ',') " +
                                        "WHERE id = @id";
-                    if (!String.IsNullOrWhiteSpace(textBox5.Text))
+                    if (!String.IsNullOrWhiteSpace(textBox4.Text))
                     {
                         sqlKomutu += " AND VALUE LIKE @urun";
                     }
 
                     SqlCommand komut = new SqlCommand(sqlKomutu, baglanti);
                     komut.Parameters.Add("@id", SqlDbType.NVarChar).Value = id;
-                    if (!String.IsNullOrWhiteSpace(textBox5.Text))
+                    if (!String.IsNullOrWhiteSpace(textBox4.Text))
                     {
-                        komut.Parameters.AddWithValue("@urun", $"%{textBox5.Text}%");
+                        komut.Parameters.AddWithValue("@urun", $"%{textBox4.Text}%");
                     }
 
                     SqlDataAdapter da = new SqlDataAdapter(komut);
@@ -156,6 +155,105 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.tedarikci
             }
         }
 
+        //İşlemleri Listele butonu
+        private void button3_Click(object sender, EventArgs e)
+        {
+            listele();
+        }
+
+        //Borç Öde butonu
+        private void button5_Click(object sender, EventArgs e)
+        {
+            tedarikci_4 form = new tedarikci_4(alacagi, id);
+            form.Show();
+        }
+
+        public void listele()
+        {
+            using (SqlConnection baglanti = new SqlConnection(baglantiKodu))
+            {
+                string sqlKomutu = "SELECT * FROM muhasebe WHERE kisiKodu = @kisiKodu";
+                if (checkBox1.Checked)
+                    sqlKomutu += " AND islemTarihi >= @ilkTarih AND islemTarihi <= @sonTarih";
+                using (SqlCommand komut = new SqlCommand(sqlKomutu, baglanti))
+                {
+                    komut.Parameters.Add("@kisiKodu", SqlDbType.NVarChar).Value = textBox1.Text;
+                    if (checkBox1.Checked)
+                    {
+                        komut.Parameters.Add("@ilkTarih", SqlDbType.DateTime).Value = dateTimePicker1.Value.Date;
+                        komut.Parameters.Add("@sonTarih", SqlDbType.DateTime).Value = dateTimePicker2.Value.Date;
+                    }
+                    try
+                    {
+                        baglanti.Open();
+                        SqlDataAdapter da = new SqlDataAdapter(komut);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        dataGridView1.DataSource = dt;
+
+                        // Toplam Borç ve Ödeme Değerlerini Hesaplama
+                        decimal toplamAlacak = 0;
+                        decimal toplamOdeme = 0;
+
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            string islemTuru = row["islemTuru"].ToString();
+                            decimal tutar = Convert.ToDecimal(row["toplamFiyat"]); // "tutar" sütunundaki veriyi alıyoruz.
+
+                            if (islemTuru == "ALACAK")
+                            {
+                                toplamAlacak += tutar; // Borçları topluyoruz.
+                            }
+                            else if (islemTuru == "ÖDEME")
+                            {
+                                toplamOdeme += tutar; // Ödemeleri topluyoruz.
+                            }
+                        }
+
+                        // Toplam Borç - Toplam Ödeme Hesaplama
+                        alacagi = toplamAlacak - toplamOdeme;
+                        if (alacagi < 0)
+                            alacagi = 0;
+                        // Sonucu musteri_2 ekranında bir label'a yazdırma (örneğin: labelToplamBorc)
+                        textBox3.Text = alacagi.ToString();
+
+
+                        //Kişinin borç bilgisini güncelleme işlemleri.
+                        string sqlKomutu1 = "UPDATE tedarikci " +
+                                            "SET alacakMiktari = @alacakMiktari " +
+                                            "WHERE id = @id";
+                        using (SqlCommand komut1 = new SqlCommand(sqlKomutu1, baglanti))
+                        {
+                            komut1.Parameters.Add("@alacakMiktari", SqlDbType.Decimal).Value = alacagi;
+                            komut1.Parameters.Add("@id", SqlDbType.NVarChar).Value = textBox1.Text;
+                            try
+                            {
+                                string sonuc1 = (komut1.ExecuteNonQuery() == 1) ? "Tedarikçi bilgileri başarılı bir şekilde güncellendi." :
+                                                                                  "Tedarikçi bilgileri güncellenemedi.";
+                                Console.Out.WriteLine(sonuc1);
+                            }
+                            catch (Exception hata)
+                            {
+                                MessageBox.Show(hata.ToString(), "HATA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            finally
+                            {
+                                baglanti.Close();
+                            }
+                        }
+                    }
+                    catch (Exception hata)
+                    {
+                        MessageBox.Show(hata.ToString(), "HATA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        baglanti.Close();
+                    }
+                }
+            }
+        }
+
         //id değerine göre SQL veri tabanında arama yapılır.
         //Eğer aranan değer varsa, sayfanın başında belirtilen "Tedarikçi Özellikleri" değişkenlerine atama yapılır.
         public void sqlDegiskenAta(String id)
@@ -172,11 +270,9 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.tedarikci
                     SqlDataAdapter da = new SqlDataAdapter(komut);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
-                    baglanti.Close();
 
                     bool durum = MetinKontrolAta(dt.Rows[0]["adi"].ToString(), out adi);
-                    durum = int.TryParse(dt.Rows[0]["borcMiktari"].ToString(), out borcu);
-                    durum = int.TryParse(dt.Rows[0]["alacakMiktari"].ToString(), out alacagi);
+                    durum = decimal.TryParse(dt.Rows[0]["alacakMiktari"].ToString(), out alacagi);
 
                 }
                 catch (Exception hata)
@@ -255,15 +351,15 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.tedarikci
         {
             int index = e.RowIndex;
 
-            if(index >= 0)
+            if (index >= 0)
             {
                 List<String> hataMesajlari = new List<string>();
                 bool durum = MetinKontrolAta(dataGridView2.Rows[index].Cells[0].Value.ToString(), out urun);
                 if (!durum) { hataMesajlari.Add("Ürün adı alınamadı."); }
                 tedarikci_5 form = new tedarikci_5(urun, textBox1.Text);
                 form.Show();
-                
-                if(hataMesajlari.Count > 0)
+
+                if (hataMesajlari.Count > 0)
                 {
                     String mesaj = String.Join(Environment.NewLine, hataMesajlari);
                     MessageBox.Show(mesaj, "HATA", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -274,9 +370,16 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.tedarikci
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox1.Checked == true)
-                dateTimePicker2.Visible = true;
-            else if(checkBox1.Checked == false)
-                dateTimePicker2.Visible = false;
+            {
+                dateTimePicker2.Enabled = true;
+                dateTimePicker1.Enabled = true;
+            }
+            else if (checkBox1.Checked == false)
+            {
+                dateTimePicker2.Enabled = false;
+                dateTimePicker1.Enabled = false;
+            }
         }
+
     }
 }

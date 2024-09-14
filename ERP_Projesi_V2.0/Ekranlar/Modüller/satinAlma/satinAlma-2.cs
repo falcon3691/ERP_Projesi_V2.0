@@ -48,8 +48,8 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.satinAlma
         {
             toplamFiyat = int.Parse(textBox2.Text) * int.Parse(textBox3.Text);
             tarih = dateTimePicker1.Value;
-            girdiCikti = "ÇIKTI";
-            islemTuru = "BORÇ";
+            girdiCikti = "GİRDİ";
+            islemTuru = "ALACAK";
             kisiKodu = textBox4.Text;
             urunEkle();
             muhasebeKaydi();
