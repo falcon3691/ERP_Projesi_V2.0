@@ -17,7 +17,7 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.satinAlma
         public string baglantiKodu = "Data Source=DESKTOP-HSH38D0\\SQLEXPRESS;Initial Catalog=KKP_V2;Integrated Security=True";
 
         //satinAlma-2 ekranı değişkenleri başlangıcı.
-        public int toplamFiyat;
+        public decimal toplamFiyat;
         public DateTime tarih;
         public string girdiCikti;
         public string islemTuru;
@@ -29,13 +29,13 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.satinAlma
             InitializeComponent();
             textBox1.Text = urunAdi;
             textBox4.Text = tedarikciKodu;
-            dateTimePicker1.Value = DateTime.Today;
+            dateTimePicker1.Value = DateTime.Today.Date;
         }
         //Satın Al butonu
         private void button1_Click(object sender, EventArgs e)
         {
-            toplamFiyat = int.Parse(textBox2.Text) * int.Parse(textBox3.Text);
-            tarih = dateTimePicker1.Value;
+            toplamFiyat = decimal.Parse(textBox2.Text) * decimal.Parse(textBox3.Text);
+            tarih = dateTimePicker1.Value.Date;
             girdiCikti = "ÇIKTI";
             islemTuru = "NULL";
             kisiKodu = textBox4.Text;
@@ -47,7 +47,7 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.satinAlma
         private void button2_Click(object sender, EventArgs e)
         {
             toplamFiyat = int.Parse(textBox2.Text) * int.Parse(textBox3.Text);
-            tarih = dateTimePicker1.Value;
+            tarih = dateTimePicker1.Value.Date;
             girdiCikti = "GİRDİ";
             islemTuru = "ALACAK";
             kisiKodu = textBox4.Text;
@@ -65,7 +65,7 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.satinAlma
                 using(SqlCommand komut = new SqlCommand(sqlKomutu, baglanti))
                 {
                     komut.Parameters.Add("@islemTarihi", SqlDbType.DateTime).Value = tarih;
-                    komut.Parameters.Add("@toplamFiyat", SqlDbType.Int).Value = toplamFiyat;
+                    komut.Parameters.Add("@toplamFiyat", SqlDbType.Decimal).Value = toplamFiyat;
                     komut.Parameters.Add("@girdiCikti", SqlDbType.NVarChar).Value = girdiCikti;
                     komut.Parameters.Add("@islemTuru", SqlDbType.NVarChar).Value = islemTuru;
                     komut.Parameters.Add("@kisiKodu", SqlDbType.NVarChar).Value = kisiKodu;
@@ -97,10 +97,13 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller.satinAlma
                 {
                     komut.Parameters.Add("@adi", SqlDbType.NVarChar).Value = textBox1.Text;
                     komut.Parameters.Add("@miktari", SqlDbType.Int).Value = int.Parse(textBox2.Text);
-                    komut.Parameters.Add("@alisFiyati", SqlDbType.Int).Value = int.Parse(textBox3.Text);
+                    komut.Parameters.Add("@alisFiyati", SqlDbType.Decimal).Value = decimal.Parse(textBox3.Text);
                     komut.Parameters.Add("@satinAlmaTarihi", SqlDbType.DateTime).Value = tarih;
                     komut.Parameters.Add("@tedarikciKodu", SqlDbType.NVarChar).Value = kisiKodu;
-                    komut.Parameters.Add("@aciklama", SqlDbType.NVarChar).Value = textBox5.Text;
+                    if(String.IsNullOrEmpty(textBox5.Text))
+                        komut.Parameters.Add("@aciklama", SqlDbType.NVarChar).Value = "";
+                    else
+                        komut.Parameters.Add("@aciklama", SqlDbType.NVarChar).Value = textBox5.Text;
 
                     try
                     {

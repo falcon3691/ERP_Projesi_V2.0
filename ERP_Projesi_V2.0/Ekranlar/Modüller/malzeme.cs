@@ -228,17 +228,24 @@ namespace ERP_Projesi_V2._0
 
             if(index >= 0)
             {
-                DataGridViewRow satır = dataGridView1.Rows[index];
-                textBox1.Text = satır.Cells[0].Value.ToString();
-                textBox7.Text = satır.Cells[1].Value.ToString();
-                textBox6.Text = satır.Cells[2].Value.ToString();
-                comboBox1.SelectedItem = satır.Cells[3].Value.ToString();
-                comboBox2.SelectedItem = satır.Cells[4].Value.ToString();
-                textBox3.Text = satır.Cells[5].Value.ToString();
-                dateTimePicker1.Value = DateTime.Parse(satır.Cells[6].Value.ToString());
-                dateTimePicker2.Value = DateTime.Parse(satır.Cells[7].Value.ToString());
-                textBox9.Text = satır.Cells[8].Value.ToString();
-                textBox10.Text = satır.Cells[9].Value.ToString();
+                try
+                {
+                    DataGridViewRow satır = dataGridView1.Rows[index];
+                    textBox1.Text = satır.Cells[0].Value.ToString();
+                    textBox7.Text = satır.Cells[1].Value.ToString();
+                    textBox6.Text = satır.Cells[2].Value.ToString();
+                    comboBox1.SelectedItem = satır.Cells[3].Value.ToString();
+                    comboBox2.SelectedItem = satır.Cells[4].Value.ToString();
+                    textBox3.Text = satır.Cells[5].Value.ToString();
+                    dateTimePicker1.Value = DateTime.Parse(satır.Cells[6].Value.ToString());
+                    dateTimePicker2.Value = DateTime.Parse(satır.Cells[7].Value.ToString());
+                    textBox9.Text = satır.Cells[8].Value.ToString();
+                    textBox10.Text = satır.Cells[9].Value.ToString();
+                }
+                catch (Exception hata) 
+                {
+                    Console.WriteLine(hata.ToString());
+                }
             }
         }
 
@@ -340,7 +347,7 @@ namespace ERP_Projesi_V2._0
             }
             else
             {
-                degisken = null;
+                degisken = "";
                 return false;
             }
         }
@@ -352,7 +359,7 @@ namespace ERP_Projesi_V2._0
         {
             if (dateTimePicker.Value != null)
             {
-                degisken = dateTimePicker.Value;
+                degisken = dateTimePicker.Value.Date;
                 return true;
             }
             else {

@@ -47,7 +47,7 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller
                                                 "VALUES(@islemTarihi, @toplamFiyat, @girdiCikti)";
                 using (SqlCommand komut1 = new SqlCommand(sqlKomutu1, baglanti))
                 {
-                    komut1.Parameters.Add("@islemTarihi", SqlDbType.DateTime).Value = DateTime.Now;
+                    komut1.Parameters.Add("@islemTarihi", SqlDbType.DateTime).Value = DateTime.Now.Date;
                     komut1.Parameters.Add("@toplamFiyat", SqlDbType.Int).Value = toplamFiyat;
                     komut1.Parameters.Add("@girdiCikti", SqlDbType.NVarChar).Value = "GİRDİ";
                     try
@@ -165,7 +165,7 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller
                         SqlDataAdapter da = new SqlDataAdapter(komut2);
                         DataTable dt2 = new DataTable();
                         da.Fill(dt2);
-                        dt2.Rows[0][0] = int.Parse(dt2.Rows[0][0].ToString()) + toplamFiyat;
+                        dt2.Rows[0][0] = decimal.Parse(dt2.Rows[0][0].ToString()) + toplamFiyat;
                         string sqlKomutu3 = "UPDATE musteri " +
                                             "SET borcu = @borcu " +
                                             "WHERE adi = @adi";
@@ -342,56 +342,62 @@ namespace ERP_Projesi_V2._0.Ekranlar.Modüller
             int index = e.RowIndex;
             if (index >= 0)
             {
-                if (int.Parse(dataGridView1.Rows[index].Cells[2].Value.ToString()) > 0)
+                try
                 {
-                    //Ürünler listesinde seçilen ürünün miktarını 1 azaltır.
-                    dataGridView1.Rows[index].Cells[2].Value = int.Parse(dataGridView1.Rows[index].Cells[2].Value.ToString()) - 1;
-                    adi = dataGridView1.Rows[index].Cells[1].Value.ToString();
-                    if (ilkUrun)
+                    if (int.Parse(dataGridView1.Rows[index].Cells[2].Value.ToString()) > 0)
                     {
-                        fiyat = Math.Round(decimal.Parse(dataGridView1.Rows[index].Cells["Fiyat"].Value.ToString()), 2);
-                        listele2(adi, fiyat);
-                        dataGridView2.Refresh();
-                        ilkUrun = false;
-                        toplamFiyat += fiyat;
-                        label5.Text = toplamFiyat.ToString();
-                    }
-                    else
-                    {
-                        DataGridViewRow row1 = null;
-                        bool urunVarMi = false;
-                        //Fiş listesinde ki satırlar arasında tek tek dolaşır ve
-                        //Ürünler listesinde seçilen ürünün "adi" değerine göre işlem yapar.
-                        foreach (DataGridViewRow row in dataGridView2.Rows)
-                        {
-                            //Eğer "adi" değeri varsa "Adet" sayısını 1 arttırır ve "Toplam Fiyat" değerine "Fiyat" değerini ekler.
-                            if (row.Cells["Ürün Adı"].Value != null && row.Cells["Ürün Adı"].Value.ToString() == adi)
-                            {
-                                urunVarMi = true;
-                                row1 = row;
-                            }
-                        }
-                        //Eğer "adi" değeri varsa "Adet" sayısını 1 arttırır ve "Toplam Fiyat" değerine "Fiyat" değerini ekler.
-                        if (urunVarMi)
-                        {
-                            fiyat = decimal.Parse(row1.Cells[2].Value.ToString());
-                            row1.Cells["Adet"].Value = int.Parse(row1.Cells["Adet"].Value.ToString()) + 1;
-                            row1.Cells[3].Value = decimal.Parse(row1.Cells[3].Value.ToString()) + fiyat;
-                            dataGridView2.Refresh();
-                            toplamFiyat += fiyat;
-                            label5.Text = toplamFiyat.ToString();
-                        }
-                        //Eğer "adi" değeri yoksa yeni değerler ile yeni satır ekler.
-                        else
+                        //Ürünler listesinde seçilen ürünün miktarını 1 azaltır.
+                        dataGridView1.Rows[index].Cells[2].Value = int.Parse(dataGridView1.Rows[index].Cells[2].Value.ToString()) - 1;
+                        adi = dataGridView1.Rows[index].Cells[1].Value.ToString();
+                        if (ilkUrun)
                         {
                             fiyat = Math.Round(decimal.Parse(dataGridView1.Rows[index].Cells["Fiyat"].Value.ToString()), 2);
                             listele2(adi, fiyat);
                             dataGridView2.Refresh();
+                            ilkUrun = false;
                             toplamFiyat += fiyat;
                             label5.Text = toplamFiyat.ToString();
                         }
+                        else
+                        {
+                            DataGridViewRow row1 = null;
+                            bool urunVarMi = false;
+                            //Fiş listesinde ki satırlar arasında tek tek dolaşır ve
+                            //Ürünler listesinde seçilen ürünün "adi" değerine göre işlem yapar.
+                            foreach (DataGridViewRow row in dataGridView2.Rows)
+                            {
+                                //Eğer "adi" değeri varsa "Adet" sayısını 1 arttırır ve "Toplam Fiyat" değerine "Fiyat" değerini ekler.
+                                if (row.Cells["Ürün Adı"].Value != null && row.Cells["Ürün Adı"].Value.ToString() == adi)
+                                {
+                                    urunVarMi = true;
+                                    row1 = row;
+                                }
+                            }
+                            //Eğer "adi" değeri varsa "Adet" sayısını 1 arttırır ve "Toplam Fiyat" değerine "Fiyat" değerini ekler.
+                            if (urunVarMi)
+                            {
+                                fiyat = decimal.Parse(row1.Cells[2].Value.ToString());
+                                row1.Cells["Adet"].Value = int.Parse(row1.Cells["Adet"].Value.ToString()) + 1;
+                                row1.Cells[3].Value = decimal.Parse(row1.Cells[3].Value.ToString()) + fiyat;
+                                dataGridView2.Refresh();
+                                toplamFiyat += fiyat;
+                                label5.Text = toplamFiyat.ToString();
+                            }
+                            //Eğer "adi" değeri yoksa yeni değerler ile yeni satır ekler.
+                            else
+                            {
+                                fiyat = Math.Round(decimal.Parse(dataGridView1.Rows[index].Cells["Fiyat"].Value.ToString()), 2);
+                                listele2(adi, fiyat);
+                                dataGridView2.Refresh();
+                                toplamFiyat += fiyat;
+                                label5.Text = toplamFiyat.ToString();
+                            }
 
+                        }
                     }
+                }catch(Exception hata)
+                {
+                    Console.WriteLine(hata.ToString());
                 }
             }
         }
