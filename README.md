@@ -1,0 +1,6 @@
+![Malzeme](https://github.com/user-attachments/assets/f541580f-ba67-4187-ac96-062c9aac301b)
+![Muhasebe](https://github.com/user-attachments/assets/2a83d5a9-a68c-4c0e-81fc-43d7ca06aba5)
+![Müşteri](https://github.com/user-attachments/assets/fe7d1132-88d4-4124-9e8e-ba39af3cb006)
+![Satın Alma](https://github.com/user-attachments/assets/c46e895f-4622-4e0c-92c2-2ed37ebb0f8e)
+![Satış](https://github.com/user-attachments/assets/96d9b612-555a-433b-b680-50deab52fd54)
+![Tedarikçi](https://github.com/user-attachments/assets/efa807ec-8872-4f88-a886-6c3b3439626c)
